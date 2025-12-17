@@ -10,13 +10,13 @@ proc ModulesHelp { } {
 module-whatis {Adds a core set of applications and libraries to your environment.}
 
 module load cmake/3.30.5/gcc-12.3.0-avx2
-module load curl/8.10.1/gcc-12.3.0-avx2-cixi24d 
+module load curl/8.10.1/gcc-12.3.0-avx2-gfco6za 
 module load git/2.46.2/gcc-12.3.0-avx2 
 module load apr/1.7.5/gcc-12.3.0-avx2-ldi6px2 
 module load apr-util/1.6.3/gcc-12.3.0-avx2-ndced3y 
 module load subversion/1.14.2/gcc-12.3.0-avx2-wxryqrh
-module load compilers/gcc/12.3.0/gcc-12.3.0
-module load mpi/openmpi/4.1.6/gcc-12.3.0
+module load compilers/gcc/12.3.0/gcc-12.3.0-avx2
+module load mpi/openmpi/4.1.6/gcc-12.3.0-avx2
 
 module load userscripts/2025-05
 

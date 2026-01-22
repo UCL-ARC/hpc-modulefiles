@@ -16,7 +16,7 @@ prereq compilers/gcc/12.3.0/gcc-12.3.0-avx2
 prereq fftw/3.3.10/gcc-12.3.0-avx2
 prereq openblas/0.3.28/gcc-12.3.0-avx2
 prereq mpi/openmpi/4.1.6/gcc-12.3.0-avx2
-perl/5.40.0/gcc-12.3.0-avx2 
+prereq perl/5.40.0/gcc-12.3.0-avx2 
 prereq python/3.11.6/gcc-12.3.0-avx2
 
 set prefix /apps/castep/24.1/gcc-12.3.0

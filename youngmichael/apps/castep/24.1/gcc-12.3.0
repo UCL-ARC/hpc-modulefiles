@@ -1,0 +1,35 @@
+#%Module -*- tcl -*-
+## module_made (v2)
+proc ModulesHelp { } {
+  puts stderr {CASTEP is a program that uses density functional theory to calculate the properties of materials from first principles.}
+}
+module-whatis {CASTEP is a program that uses density functional theory to calculate the properties of materials from first principles.}
+
+
+lappend auto_path /apps/modulelibs/UsefulModuleFunctions
+package require modulefunctions 1.0
+
+modulefunctions::mustBeMemberToLoad ag-archpc-castep
+conflict castep
+prereq ucl-stack/2025-12
+prereq compilers/gcc/12.3.0/gcc-12.3.0-avx2
+prereq fftw/3.3.10/gcc-12.3.0-avx2
+prereq openblas/0.3.28/gcc-12.3.0-avx2
+prereq mpi/openmpi/4.1.6/gcc-12.3.0-avx2
+perl/5.40.0/gcc-12.3.0-avx2 
+prereq python/3.11.6/gcc-12.3.0-avx2
+
+set prefix /apps/castep/24.1/gcc-12.3.0
+prepend-path CMAKE_PREFIX_PATH $prefix
+prepend-path PATH $prefix/bin
+prepend-path CPATH $prefix/include
+prepend-path INCLUDE_PATH $prefix/include
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_RUN_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+prepend-path LIBRARY_PATH $prefix/lib64
+prepend-path LD_RUN_PATH $prefix/lib64
+prepend-path LD_LIBRARY_PATH $prefix/lib64
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
+prepend-path PKG_CONFIG_PATH $prefix/lib64/pkgconfig
+

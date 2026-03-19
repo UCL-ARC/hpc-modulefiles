@@ -20,7 +20,7 @@ module-whatis "Adds STAR-CD 4.28.050 using Intel 2016 compiler suite to your env
 
 conflict star-cd
 prereq ucl-stack
-prereq compilers/gcc/12.3.0/gcc-12.3.0 
+prereq compilers/gcc/12.3.0/gcc-12.3.0-avx2
 
 set version	4.28.050
 set prefix  /apps/STAR-CD/$version

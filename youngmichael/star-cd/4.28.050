@@ -19,7 +19,7 @@ proc ModulesHelp { } {
 module-whatis "Adds STAR-CD 4.28.050 using Intel 2016 compiler suite to your environment. STAR-CD is a code for performing CFD simulations. It is designed for modelling fluid flow, heat transfer, mass transfer and chemical reactions."
 
 conflict star-cd
-
+prereq ucl-stack/2025-05
 prereq compilers/gcc/12.3.0/gcc-12.3.0 
 
 set version	4.28.050

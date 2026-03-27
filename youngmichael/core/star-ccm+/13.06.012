@@ -69,13 +69,15 @@ module-whatis "Adds STAR-CCM+ and STAR-View to your environment."
 
 conflict star-ccm+
 
-#prereq gcc-libs
+prereq ucl-stack/2025-12
+prereq compilers/gcc/12.3.0/gcc-12.3.0-avx2 
+
 # prereq mpi/openmpi/1.8.4/intel-2015-update2
 
 # Location of STAR-CCM+:
 
 set prefix /apps/STAR-CCM+/13.06.012
-
+ 
 modulefunctions::mustBeMemberToLoad "ag-archpc-starcd"
 
 # Set location of Mech Eng licence manager

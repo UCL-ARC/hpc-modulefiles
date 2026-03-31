@@ -1,0 +1,17 @@
+#%Module -*- tcl -*-
+## module_made (v2)
+proc ModulesHelp { } {
+  puts stderr {GULP (General Utility Lattice Program) performs a variety of types of simulation on materials using boundary conditions of 0-D (molecules and clusters), 1-D (polymers), 2-D (surfaces, slabs and grain boundaries), or 3-D (periodic solids). Focuses on analytical solutions through the use of lattice dynamics where possible, rather than on molecular dynamics. A variety of force fields can be used. Built with FoX and without plumed.}
+}
+module-whatis {GULP (General Utility Lattice Program) performs a variety of types of simulation on materials using boundary conditions of 0-D (molecules and clusters), 1-D (polymers), 2-D (surfaces, slabs and grain boundaries), or 3-D (periodic solids). Focuses on analytical solutions through the use of lattice dynamics where possible, rather than on molecular dynamics. A variety of force fields can be used. Built with FoX and without plumed.}
+
+conflict gulp
+
+prereq mpi/openmpi/4.1.6/gcc-12.3.0
+prereq fftw/3.3.10-openmpi-omp/gcc-12.3.0-hrmmof2
+prereq openblas/0.3.28/gcc-12.3.0
+prereq netlib-scalapack/2.2.0-openmpi/gcc-12.3.0
+
+set prefix /apps/gulp/6.4/gcc-12.3.0/gulp-6.4
+prepend-path PATH $prefix/Src
+

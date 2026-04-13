@@ -1,0 +1,13 @@
+#%Module -*- tcl -*-
+##
+
+proc ModulesHelp { } {
+
+  puts stderr {Adds the 2025-05 software stack to your environment.}
+
+}
+
+module-whatis {Adds the 2025-05 software stack to your environment.}
+
+module use /apps/spack/0.23/deploy/2025-05/modules/linux-rhel9-cascadelake
+

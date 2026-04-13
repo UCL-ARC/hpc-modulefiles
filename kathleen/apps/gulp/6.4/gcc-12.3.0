@@ -7,6 +7,7 @@ module-whatis {GULP (General Utility Lattice Program) performs a variety of type
 
 conflict gulp
 
+prereq ucl-stack/2026-03
 prereq mpi/openmpi/4.1.6/gcc-12.3.0
 prereq fftw/3.3.10-openmpi-omp/gcc-12.3.0-hrmmof2
 prereq openblas/0.3.28/gcc-12.3.0

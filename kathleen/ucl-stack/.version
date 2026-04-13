@@ -1,0 +1,3 @@
+#%Module
+# set the default module version of ucl-stack to be 2025-05
+set ModulesVersion 2025-05

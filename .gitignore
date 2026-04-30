@@ -1,0 +1,2 @@
+# Exclude macOS hidden file from being accidentally committed
+.DS_Store

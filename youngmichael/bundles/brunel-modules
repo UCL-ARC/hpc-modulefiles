@@ -1,0 +1,10 @@
+#%Module -*- tcl -*-
+
+proc ModulesHelp { } {
+    puts stderr {This module adds the Brunel licensed software module space to module avail.}
+}
+
+module-whatis {Adds Brunel licensed software module space to module avail.}
+
+module           use --append /apps/hpc-modulefiles/youngmichael/dept/brunel
+

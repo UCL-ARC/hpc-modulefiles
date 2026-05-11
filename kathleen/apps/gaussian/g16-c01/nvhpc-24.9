@@ -1,0 +1,71 @@
+#%Module -*- tcl -*-
+#
+# Gaussian G16-A03 with Linda and Gaussview 6
+#
+
+lappend auto_path /apps/modulelibs/UsefulModuleFunctions
+package require modulefunctions 1.0
+
+proc ModulesHelp { } {
+
+    puts stderr "This module adds the Gaussian G16-C01 package to your environment."
+    puts stderr "Also includes Linda 9.2"
+    puts stderr ""
+}
+
+module-whatis "Adds Gaussian G16-C01 to your environment and also includes Linda 9.2. "
+
+conflict gaussian
+
+set root /apps/gaussian/g16-c01
+
+modulefunctions::mustBeMemberToLoad ag-archpc-gaussian16
+
+set mainExe g16
+
+if {[modulefunctions::isModuleLoad] && [modulefunctions::nodeIsLoginNode]} {
+    puts stderr "The main Gaussian executable ($mainExe) is too resource-intensive"
+    puts stderr "to be run on the login nodes. Please submit it as a job."
+}
+
+# In a job TMPDIR and /tmp are the same and cleaned up - on login node try $XDG_RUNTIME_DIR (/run/user/$uid)
+if [modulefunctions::isTMPDIR] {
+    # Check TMPDIR has a reasonable amount of free space (1GB): if not, point to Scratch instead
+    if {[modulefunctions::getTmpdirFreeSpace] >= (1024*1024)} {
+        setenv GAUSS_SCRDIR $::env(TMPDIR)/gaussian.[randomLabel]
+    } else {
+        setenv GAUSS_SCRDIR $::env(HOME)/Scratch/gaussian_scrdirs/[randomLabel]
+    }
+} else {
+    if {[info exists ::env(XDG_RUNTIME_DIR)]} {
+        setenv GAUSS_SCRDIR $::env(XDG_RUNTIME_DIR)/gaussian.[randomLabel]
+    } else {
+        setenv GAUSS_SCRDIR /tmp/gaussian.[randomLabel]
+    }
+}
+
+if {[modulefunctions::isModuleLoad]} {
+    puts stderr "Creating Gaussian Scratch directory:"
+    puts stderr "  GAUSS_SCRDIR=$::env(GAUSS_SCRDIR)"
+    if { [modulefunctions::createDir "$::env(GAUSS_SCRDIR)"] } {
+        puts stderr ""
+    } else {
+        puts stderr "Gaussian Scratch directory creation failed."
+        break
+    }
+}
+
+append-path PATH        $root/g16
+append-path PATH        $root/g16/bsd
+
+setenv g16root          $root
+setenv GAUSS_EXEDIR     $root/g16
+#setenv lindaConv        $root/linda.perl
+setenv LINDA_PATH       $root/g16/linda9.2/linux64bit/
+
+# set Linda verbose mode
+setenv GAUSS_LFLAGS	"-v"
+
+# prevent OpenMP parallelism conflicting with Gaussian's own multithreading
+setenv OMP_NUM_THREADS	1
+

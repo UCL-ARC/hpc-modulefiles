@@ -37,7 +37,7 @@ module-whatis "Adds Abaqus 2024 to your environment."
 
 conflict abaqus
 
-prereq gcc-libs
+#prereq gcc-libs
 
 # Location of ABAQUS:
 

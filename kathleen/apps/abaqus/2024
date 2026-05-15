@@ -48,7 +48,7 @@ modulefunctions::mustBeMemberToLoad "ag-archpc-abaqus"
 # Set location of Mech Eng licence manager
 prepend-path LM_LICENSE_FILE   27000@128.40.55.199
 
-prepend-path PATH		$prefix/Commands
+prepend-path PATH		$prefix
 
 if { [modulefunctions::isCluster Kathleen]  } {
 

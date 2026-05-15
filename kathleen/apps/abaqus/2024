@@ -1,0 +1,59 @@
+#%Module -*- tcl -*-
+##
+## dot modulefile
+##
+## ABAQUS 2024
+##
+## HPC team 
+## Installed April 2026 and includes reserved appp group check
+## Updated June 2020 for MPI settings on Kathleen
+## Updated October 2023 for new Mech Eng License Server
+
+# New Legion modules layout
+
+lappend auto_path /apps/modulelibs/UsefulModuleFunctions
+package require modulefunctions 1.0
+
+
+proc ModulesHelp { } {
+  puts stderr "Adds Abaqus 2024 to your path."
+  puts stderr ""
+  puts stderr "Abaqus is a commercial software suite for finite"
+  puts stderr "element analysis and computer-aided engineering"
+  puts stderr ""
+  puts stderr "Abaqus is a reserved applications. The license is"
+  puts stderr "paid and managed by Mechanical Engineering. Access"
+  puts stderr "is controlled by membership of the abaqus group."
+  puts stderr "To be given access to these applications please"
+  puts stderr "email rc-support@ucl.ac.uk - Note: you will need"
+  puts stderr "authorisation from Mech Eng"
+  puts stderr ""  
+  puts stderr "Directory: /apps/abaqus"
+}
+
+
+
+module-whatis "Adds Abaqus 2024 to your environment."
+
+conflict abaqus
+
+prereq gcc-libs
+
+# Location of ABAQUS:
+
+set prefix /apps/abaqus
+
+modulefunctions::mustBeMemberToLoad "ag-archpc-abaqus"
+
+# Set location of Mech Eng licence manager
+prepend-path LM_LICENSE_FILE   27000@128.40.55.199
+
+prepend-path PATH		$prefix/Commands
+
+if { [modulefunctions::isCluster Kathleen]  } {
+
+    # Platform MPI settings for Kathleen
+    
+    setenv MPI_IC_ORDER "upapl:tcp"
+}
+

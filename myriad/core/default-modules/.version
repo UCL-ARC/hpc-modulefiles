@@ -1,0 +1,3 @@
+#%Module
+# set the default module version
+set ModulesVersion 2026-05

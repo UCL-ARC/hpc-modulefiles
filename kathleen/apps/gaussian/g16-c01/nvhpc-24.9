@@ -29,20 +29,22 @@ if {[modulefunctions::isModuleLoad] && [modulefunctions::nodeIsLoginNode]} {
 }
 
 # In a job TMPDIR and /tmp are the same and cleaned up - on login node try $XDG_RUNTIME_DIR (/run/user/$uid)
-if [modulefunctions::isTMPDIR] {
-    # Check TMPDIR has a reasonable amount of free space (1GB): if not, point to Scratch instead
-    if {[modulefunctions::getTmpdirFreeSpace] >= (1024*1024)} {
-        setenv GAUSS_SCRDIR $::env(TMPDIR)/gaussian.[randomLabel]
+if [modulefunctions::isModuleLoad] {
+    if [modulefunctions::isTMPDIR] {
+        # Check TMPDIR has a reasonable amount of free space (1GB): if not, point to Scratch instead
+        if {[modulefunctions::getTmpdirFreeSpace] >= (1024*1024)} {
+            setenv GAUSS_SCRDIR $::env(TMPDIR)/gaussian.[randomLabel]
+        } else {
+            setenv GAUSS_SCRDIR $::env(HOME)/Scratch/gaussian_scrdirs/[randomLabel]
+        }
     } else {
-        setenv GAUSS_SCRDIR $::env(HOME)/Scratch/gaussian_scrdirs/[randomLabel]
+        if {[info exists ::env(XDG_RUNTIME_DIR)]} {
+            setenv GAUSS_SCRDIR $::env(XDG_RUNTIME_DIR)/gaussian.[randomLabel]
+        } else {
+            setenv GAUSS_SCRDIR /tmp/gaussian.[randomLabel]
+        }
     }
-} else {
-    if {[info exists ::env(XDG_RUNTIME_DIR)]} {
-        setenv GAUSS_SCRDIR $::env(XDG_RUNTIME_DIR)/gaussian.[randomLabel]
-    } else {
-        setenv GAUSS_SCRDIR /tmp/gaussian.[randomLabel]
-    }
-}
+} 
 
 if {[modulefunctions::isModuleLoad]} {
     puts stderr "Creating Gaussian Scratch directory:"

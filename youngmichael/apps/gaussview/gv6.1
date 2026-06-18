@@ -1,0 +1,24 @@
+#%Module -*- tcl -*-
+
+lappend auto_path /apps/modulelibs/UsefulModuleFunctions
+package require modulefunctions 1.0
+
+proc ModulesHelp { } {
+  puts stderr {GaussView 6.1 is a graphical interface used with Gaussian 16.}
+}
+module-whatis {GaussView 6.1 is a graphical interface used with Gaussian 16.}
+
+prereq gaussian/g16-c01
+
+conflict gaussview
+
+set prefix /apps/gaussview/gv6.1
+
+modulefunctions::mustBeMemberToLoad ag-archpc-gaussian16
+
+setenv GV_DIR $prefix/gv
+prepend-path PATH $prefix/gv/bin
+prepend-path PATH $prefix/gv
+
+prepend-path CMAKE_PREFIX_PATH $prefix
+

@@ -1,0 +1,20 @@
+#%Module -*- tcl -*-
+##
+
+proc ModulesHelp { } {
+
+  puts stderr {Adds the userscripts and user tools directories to your path.
+               Provides scriptfor among other utilities.
+               Directory: /apps/cluster-scripts}
+
+}
+
+module-whatis {Adds the userscripts and user tools directories to your path. Provides scriptfor among other utilities.}
+
+set prefix /apps/cluster-scripts
+
+prepend-path PATH               $prefix
+prepend-path PATH               $prefix/slurm
+
+#prepend-path PATH       /apps/cluster-bin # no current all-user contents
+

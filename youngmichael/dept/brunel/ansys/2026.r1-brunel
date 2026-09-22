@@ -80,6 +80,7 @@ conflict ansys
 # Check user is in the Brunel ANSYS group.
 modulefunctions::mustBeMemberToLoad "ag-archpc-ansys-brunel"
 # For ANSYS Electromagnetics products
+prereq   ucl-stack/2026-04
 prereq   giflib/5.2.2/gcc-12.3.0-avx2-7vzhlza
 prereq   mpi/intel-oneapi-mpi/2021.14.0/intel-oneapi-2024.2.1-avx2
 

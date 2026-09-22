@@ -84,7 +84,7 @@ prereq   ucl-stack/2026-04
 prereq   giflib/5.2.2/gcc-12.3.0-avx2-7vzhlza
 prereq   mpi/intel-oneapi-mpi/2021.14.0/intel-oneapi-2024.2.1-avx2
 
-set          prefix    /shared/ucl/apps/ANSYS/2024.R1-brunel
+set          prefix    /lustre/apps/ANSYS/2026R1-brunel
 set          vtag   261
 set          subprefix $prefix/v$vtag
 set          vers   26.1

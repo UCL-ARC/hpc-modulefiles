@@ -1,0 +1,26 @@
+#%Module -*- tcl -*-
+proc ModulesHelp { } {
+  puts stderr {Adds Abaqus 2024 for Brunel users to your path. Abaqus is a commercial software suite for finite element analysis and computer-aided engineering. Access is authorised by the Brunel Point of Contact.}
+}
+module-whatis {Adds Abaqus 2024 for Brunel users to your path. Abaqus is a commercial software suite for finite element analysis and computer-aided engineering. Access is authorised by the Brunel Point of Contact.}
+
+lappend auto_path /apps/modulelibs/UsefulModuleFunctions
+package require modulefunctions 1.0
+
+conflict abaqus
+
+set prefix /apps/abaqus/2024-brunel
+
+modulefunctions::mustBeMemberToLoad "ag-archpc-abaqus-brunel"
+
+# Set location of license manager
+prepend-path LM_LICENSE_FILE "27000@134.83.82.151"
+
+prepend-path PATH               $prefix/bin
+
+# Platform MPI settings for Young
+setenv MPI_IC_ORDER "upapl:tcp"
+
+# Abaqus 2024 does weird things to locale which can cause "unknown encoding: ISO-8859-1"
+setenv LC_ALL "POSIX"
+

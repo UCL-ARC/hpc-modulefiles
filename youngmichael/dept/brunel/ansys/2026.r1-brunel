@@ -89,6 +89,8 @@ set          vtag   261
 set          subprefix $prefix/v$vtag
 set          vers   26.1
 
+prepend-path LD_LIBRARY_PATH $subprefix/Framework/bin/Linux64/Mesa
+
 prepend-path PATH       $prefix/shared_files/licensing/lic_admin
 prepend-path PATH          $subprefix/CFX/bin
 prepend-path PATH    $subprefix/fluent/bin

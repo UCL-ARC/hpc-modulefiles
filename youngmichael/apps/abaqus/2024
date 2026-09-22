@@ -1,8 +1,8 @@
 #%Module -*- tcl -*-
 proc ModulesHelp { } {
-  puts stderr {Adds Abaqus 2024 to your path. Abaqus is a commercial software suite for finite element analysis and computer-aided engineering.} 
+  puts stderr {Adds Abaqus 2024 for UCL Mech Eng to your path. Abaqus is a commercial software suite for finite element analysis and computer-aided engineering. Access is authorised by Mechanical Engineering.}
 }
-module-whatis {Adds Abaqus 2024 to your path. Abaqus is a commercial software suite for finite element analysis and computer-aided engineering.}
+module-whatis {Adds Abaqus 2024 for UCL Mech Eng to your path. Abaqus is a commercial software suite for finite element analysis and computer-aided engineering. Access is authorised by Mechanical Engineering.}
 
 lappend auto_path /apps/modulelibs/UsefulModuleFunctions
 package require modulefunctions 1.0

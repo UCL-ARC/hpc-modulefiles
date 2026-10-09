@@ -19,5 +19,6 @@ module load compilers/gcc/12.3.0/gcc-12.3.0
 module load mpi/openmpi/4.1.6/gcc-12.3.0
 module load nano/8.2/gcc-12.3.0
 module load tmux/3.4/gcc-12.3.0
+module load screen/4.9.1/gcc-12.3.0
 
 module load userscripts/2026-05

@@ -1,7 +1,7 @@
 #%Module -*- tcl -*-
 ## module_made (v2)
 
-lappend auto_path /shared/ucl/apps/modulelibs/UsefulModuleFunctions
+lappend auto_path /apps/modulelibs/UsefulModuleFunctions
 package require modulefunctions 1.0
 
 proc ModulesHelp { } {

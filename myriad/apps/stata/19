@@ -1,0 +1,29 @@
+#%Module -*- tcl -*-
+## module_made (v2)
+
+lappend auto_path /shared/ucl/apps/modulelibs/UsefulModuleFunctions
+package require modulefunctions 1.0
+
+proc ModulesHelp { } {
+    puts stderr "Adds StataNow/MP Version 19.5 (2 cores) to your environment."
+    puts stderr ""
+    puts stderr "StataNow/MP is the version of Stata that supports shared"
+    puts stderr "memory parallel working. The UCL licence allows"
+    puts stderr "Stata to run on up to two cores per job. Stata is a,"
+    puts stderr "integrated statistical package that provides tools for"
+    puts stderr "data analysis, data management, and graphics."
+    puts stderr ""
+    puts stderr "Stata has been updated to version 19.5 (15 October 2026)"
+    puts stderr ""
+    puts stderr "Directory: /apps/StataMP/"
+}
+
+module-whatis "Adds StataNow/MP 19.5 to your environment."
+
+# Location of Stata:
+
+set prefix /apps/StataMP/stata19.5
+conflict stata
+
+prepend-path PATH               $prefix
+setenv STATATMP                 /tmp

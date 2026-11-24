@@ -1,0 +1,75 @@
+#%Module -*- tcl -*-
+##
+## dot modulefile
+##
+## Mathematica 15.0.1
+##
+## Brian Alston May 2018
+##
+## Added installation of UCL Parallel Kernels Prefs file if user doesn't have one.
+## Updated for Mathematica 10.2 (very minor change of version numbers).
+## Updated for Mathematica 10.4 March 2016 (minor changes)
+## Updated for Mathematica 11.0.0 September 2016
+## Updated for Mathematica 11.0.1 October 2016
+## Updated to install USERBASE files from Tunnel for multi-node support - Jan 2017
+## Updated for Mathematica 11.2 January 2018
+## Updated for Mathematica 11.3 May 2018
+## Updated to copy per user Tunnel support scripts from /shared/ucl/apps/Mathematica/UCL/Tunnel
+## - February 2019.
+## Updated March 2021 for Mathematica 12.2
+## Updated August 2022 for Mathematica 13.1
+## Updated November 2026 for Mathematica 15.0.1
+
+# New RHEL9 modules layout
+
+lappend auto_path /apps/modulelibs/UsefulModuleFunctions
+package require modulefunctions 1.0
+
+
+proc ModulesHelp { } {
+    puts stderr "Adds Mathematica 15.0.1 to your environment."
+    puts stderr "Use wolfram for the CLI or WolframNB for the GUI."
+    puts stderr "Mathematica is a general purpose package and language for"
+    puts stderr "mathematical applications. It can be used for numerical"
+    puts stderr "calculations, symbolic computation and visualization."
+    puts stderr "Mathematica supports numbers of any precision."
+    puts stderr ""
+    puts stderr "Directory: /apps/Mathematica/15.0.1"
+}
+
+module-whatis "Adds Mathematica 15.0.1 to your environment."
+
+# Location of Mathematica:
+
+set version 15.0.1
+set prefix /apps/Mathematica/$version
+set userBase ~/Scratch/.Mathematica/$version
+
+conflict mathematica
+
+prepend-path	PATH			$prefix/bin
+setenv 		WOLFRAM_BASE        $prefix
+setenv 		WOLFRAM_USERBASE	$userBase
+
+if { [modulefunctions::isModuleLoad] } {
+    if { [modulefunctions::createDir $userBase] } {
+        puts stderr "WOLFRAM_USERBASE directory is $userBase"
+    } else {
+        puts stderr "Problem setting up user base directory"
+    }
+}
+
+# Use CPU binding for $ProcessorCount and MKLThreadNumber in a job or else set OMP_NUM_THREADS to 1 on login node.
+if {[info exists ::env(SLURM_JOB_ID)]} {
+    unsetenv OMP_NUM_THREADS
+} else {
+    setenv OMP_NUM_THREADS 1
+}
+
+if { [modulefunctions::isModuleLoad] } {
+    if {[info exists ::env(DISPLAY)]} {
+	puts stderr ""
+	puts stderr "Mathematica configured."
+	puts stderr ""
+    }
+}
